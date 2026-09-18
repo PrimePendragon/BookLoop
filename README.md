@@ -1,37 +1,54 @@
-
 # BookLoop
 
-BookLoop ist eine relationale PostgreSQL-Datenbank für eine Plattform zur gemeinschaftlichen Ausleihe von Büchern. Benutzer können Bücher als Angebote zur Verfügung stellen, verfügbare Angebote reservieren und Bücher ausleihen.
+## 1. Projektbeschreibung
 
-Das Datenmodell umfasst 14 miteinander verknüpfte Tabellen und bildet unter anderem Benutzer, Bücher, Angebote, Verfügbarkeiten, Reservierungen, Ausleihen und Bewertungen ab.
+BookLoop ist eine relationale PostgreSQL-Datenbank für eine Plattform zur gemeinschaftlichen Ausleihe von Büchern.
 
-## Systemvoraussetzungen
+Benutzer können Bücher als Angebote zur Verfügung stellen, verfügbare Angebote reservieren und Bücher ausleihen. Zusätzlich verwaltet das System Standorte, zeitliche Verfügbarkeiten und Bewertungen zu vorhandenen Ausleihvorgängen.
+
+Das relationale Datenmodell umfasst 14 miteinander verknüpfte Tabellen.
+
+## 2. Systemvoraussetzungen
 
 - PostgreSQL 18
 - pgAdmin 4, Version 9.11
 
-## SQL-Dateien
+## 3. Datenbank einrichten
 
-- `01_schema.sql` – Erstellt das vollständige Datenbankschema mit Tabellen, ENUM-Datentypen, Constraints, Trigger und Indizes.
-- `02_testdaten.sql` – Befüllt jede der 14 Tabellen mit jeweils 10 Testdatensätzen.
-- `03_testfaelle.sql` – Enthält Abfragen sowie Positiv- und Negativtests zur Überprüfung der Datenbank.
+Die SQL-Dateien werden in folgender Reihenfolge ausgeführt:
 
-## Installation
+1. `01_schema.sql`
+2. `02_testdaten.sql`
+3. `03_testfaelle.sql`
 
-1. Eine neue PostgreSQL-Datenbank mit dem Namen `BookLoop` erstellen.
-2. `01_schema.sql` vollständig ausführen.
-3. `02_testdaten.sql` vollständig ausführen.
-4. Die Tests aus `03_testfaelle.sql` einzeln ausführen.
+`01_schema.sql` erstellt das vollständige Datenbankschema mit Tabellen, ENUM-Datentypen, Constraints, Trigger und Indizes.
 
-Die Negativtests in `03_testfaelle.sql` erzeugen bewusst Fehlermeldungen. Damit wird überprüft, ob die definierten Constraints und Schutzmechanismen ungültige Daten korrekt ablehnen.
+`02_testdaten.sql` befüllt jede der 14 Tabellen mit jeweils 10 Testdatensätzen.
+
+`03_testfaelle.sql` enthält Abfragen sowie Positiv- und Negativtests zur Überprüfung der Datenbank. Die einzelnen Tests sollten separat ausgeführt werden.
 
 Eine ausführliche Beschreibung der Einrichtung befindet sich in `Installationsanleitung.pdf`.
 
-## Repository-Inhalt
+## 4. Testfälle
+
+Die Testfälle überprüfen unter anderem Primär- und Fremdschlüssel, UNIQUE-Constraints, CHECK-Constraints, ENUM-Werte sowie die Triggerprüfung bei Reservierungen.
+
+Die Fehlermeldungen der Negativtests sind beabsichtigt. Sie zeigen, dass ungültige Daten durch die definierten Schutzmechanismen abgelehnt werden.
+
+Zusätzlich enthält `03_testfaelle.sql` JOIN-Abfragen und Aggregationen zur Auswertung der gespeicherten Daten.
+
+## 5. Repositorystruktur
 
 - `01_schema.sql` – Datenbankschema
 - `02_testdaten.sql` – Testdaten
 - `03_testfaelle.sql` – Testfälle und Abfragen
-- `Installationsanleitung.pdf` – Anleitung zur Einrichtung und Ausführung
-- `docs/` – Dokumente und Berichte aus den Projektphasen
-  
+- `Installationsanleitung.pdf` – Installationsanleitung
+- `docs/` – Berichte und Dokumentationen der Projektphasen
+
+## 6. Autor
+
+Brian Pudelko
+
+IU Internationale Hochschule  
+Studiengang Informatik  
+Projekt: Data-Mart-Erstellung in SQL
